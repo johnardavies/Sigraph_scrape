@@ -24,7 +24,7 @@ class SiggraphSpider(scrapy.Spider):
         hxs = Selector(response)
         print (hxs)
         items=[]  # /hr[]/following-sibling::text()
-        followers=hxs.xpath('//p[not(descendant::a)]/text()').extract()  #extract text between p tages exclude those containing nested a tags
+        followers=hxs.xpath('//p[not(descendant::a or descendant::br)]/text()').extract()  #extract text between p tages exclude those containing nested a or br tags
         for elem in followers: #loops through the returned titles
            print(elem)
            item=SigraphScrapeItem()
